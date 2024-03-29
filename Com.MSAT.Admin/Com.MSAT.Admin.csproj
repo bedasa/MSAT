@@ -7,4 +7,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Com.Infrastructure\Com.MSAT.Infrastructure.csproj" />
+      <ProjectReference Include="..\Com.MSAT.Domain\Com.MSAT.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

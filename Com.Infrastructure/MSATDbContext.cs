@@ -1,5 +1,5 @@
-﻿using Com.MSAT.Infrastructure.Config;
-using Com.MSAT.Infrastructure.Models;
+﻿using Com.MSAT.Domain.Models;
+using Com.MSAT.Infrastructure.Config;
 using Microsoft.EntityFrameworkCore;
 
 namespace Com.MSAT.Infrastructure;
@@ -13,9 +13,9 @@ public class MsatDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new OrderEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new OrderLineEntityTypeConfiguration());
     }
 

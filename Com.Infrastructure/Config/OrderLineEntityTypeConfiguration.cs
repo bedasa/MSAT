@@ -1,4 +1,4 @@
-﻿using Com.MSAT.Infrastructure.Models;
+﻿using Com.MSAT.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,7 +15,7 @@ namespace Com.MSAT.Infrastructure.Config
                 .HasColumnName("order_id");
             orderLineConfiguration.Property(p => p.ProductId).IsRequired()
                 .HasColumnName("product_id");
-            orderLineConfiguration.Property(p => p.ProductId).IsRequired().HasColumnName("created_by");
+            orderLineConfiguration.Property(p => p.CreatedBy).IsRequired().HasColumnName("created_by");
             orderLineConfiguration.Property(p => p.CreatedAt).IsRequired().HasColumnName("created_at");
             orderLineConfiguration.Property(p => p.UpdatedBy).IsRequired().HasColumnName("updated_by");
             orderLineConfiguration.Property(p => p.UpdatedAt).IsRequired().HasColumnName("updated_at");
@@ -23,6 +23,7 @@ namespace Com.MSAT.Infrastructure.Config
             orderLineConfiguration.HasOne(o => o.ProductItem)
                 .WithMany()
                 .HasForeignKey(o => o.ProductId);
+
         }
     }
 }

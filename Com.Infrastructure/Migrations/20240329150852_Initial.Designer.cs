@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Com.MSAT.Infrastructure.Migrations
 {
     [DbContext(typeof(MsatDbContext))]
-    [Migration("20240329092041_productforeignkey_removed")]
-    partial class productforeignkey_removed
+    [Migration("20240329150852_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Com.MSAT.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Com.MSAT.Infrastructure.Models.Category", b =>
+            modelBuilder.Entity("Com.MSAT.Domain.Models.Category", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace Com.MSAT.Infrastructure.Migrations
                     b.ToTable("Categories", (string)null);
                 });
 
-            modelBuilder.Entity("Com.MSAT.Infrastructure.Models.Order", b =>
+            modelBuilder.Entity("Com.MSAT.Domain.Models.Order", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,7 +105,7 @@ namespace Com.MSAT.Infrastructure.Migrations
                     b.ToTable("Orders", (string)null);
                 });
 
-            modelBuilder.Entity("Com.MSAT.Infrastructure.Models.OrderLine", b =>
+            modelBuilder.Entity("Com.MSAT.Domain.Models.OrderLine", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,7 +120,8 @@ namespace Com.MSAT.Infrastructure.Migrations
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("created_by");
 
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint")
@@ -128,7 +129,7 @@ namespace Com.MSAT.Infrastructure.Migrations
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint")
-                        .HasColumnName("created_by");
+                        .HasColumnName("product_id");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -148,7 +149,7 @@ namespace Com.MSAT.Infrastructure.Migrations
                     b.ToTable("OrderLines", (string)null);
                 });
 
-            modelBuilder.Entity("Com.MSAT.Infrastructure.Models.Product", b =>
+            modelBuilder.Entity("Com.MSAT.Domain.Models.Product", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -212,15 +213,15 @@ namespace Com.MSAT.Infrastructure.Migrations
                     b.ToTable("Products", (string)null);
                 });
 
-            modelBuilder.Entity("Com.MSAT.Infrastructure.Models.OrderLine", b =>
+            modelBuilder.Entity("Com.MSAT.Domain.Models.OrderLine", b =>
                 {
-                    b.HasOne("Com.MSAT.Infrastructure.Models.Order", "ParentOrder")
+                    b.HasOne("Com.MSAT.Domain.Models.Order", "ParentOrder")
                         .WithMany("OrderLines")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Com.MSAT.Infrastructure.Models.Product", "ProductItem")
+                    b.HasOne("Com.MSAT.Domain.Models.Product", "ProductItem")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -231,9 +232,9 @@ namespace Com.MSAT.Infrastructure.Migrations
                     b.Navigation("ProductItem");
                 });
 
-            modelBuilder.Entity("Com.MSAT.Infrastructure.Models.Product", b =>
+            modelBuilder.Entity("Com.MSAT.Domain.Models.Product", b =>
                 {
-                    b.HasOne("Com.MSAT.Infrastructure.Models.Category", "ProductCategory")
+                    b.HasOne("Com.MSAT.Domain.Models.Category", "ProductCategory")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -242,7 +243,7 @@ namespace Com.MSAT.Infrastructure.Migrations
                     b.Navigation("ProductCategory");
                 });
 
-            modelBuilder.Entity("Com.MSAT.Infrastructure.Models.Order", b =>
+            modelBuilder.Entity("Com.MSAT.Domain.Models.Order", b =>
                 {
                     b.Navigation("OrderLines");
                 });

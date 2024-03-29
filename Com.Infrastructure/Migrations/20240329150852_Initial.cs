@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Com.MSAT.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,7 +58,6 @@ namespace Com.MSAT.Infrastructure.Migrations
                     description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     image_url = table.Column<string>(type: "nvarchar(2083)", maxLength: 2083, nullable: false),
                     date_added = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: true),
                     created_by = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updated_by = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -73,11 +72,6 @@ namespace Com.MSAT.Infrastructure.Migrations
                         principalTable: "Categories",
                         principalColumn: "category_id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "product_id");
                 });
 
             migrationBuilder.CreateTable(
@@ -87,8 +81,8 @@ namespace Com.MSAT.Infrastructure.Migrations
                     orderline_id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     order_id = table.Column<long>(type: "bigint", nullable: false),
-                    created_by = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    product_id = table.Column<long>(type: "bigint", nullable: false),
+                    created_by = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updated_by = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -103,17 +97,12 @@ namespace Com.MSAT.Infrastructure.Migrations
                         principalColumn: "order_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderLines_Products_created_by",
-                        column: x => x.created_by,
+                        name: "FK_OrderLines_Products_product_id",
+                        column: x => x.product_id,
                         principalTable: "Products",
                         principalColumn: "product_id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderLines_created_by",
-                table: "OrderLines",
-                column: "created_by");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderLines_order_id",
@@ -121,14 +110,14 @@ namespace Com.MSAT.Infrastructure.Migrations
                 column: "order_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderLines_product_id",
+                table: "OrderLines",
+                column: "product_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_category_id",
                 table: "Products",
                 column: "category_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductId",
-                table: "Products",
-                column: "ProductId");
         }
 
         /// <inheritdoc />

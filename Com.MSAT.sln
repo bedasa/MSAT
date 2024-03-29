@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.MSAT.Admin", "Com.MSAT.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.MSAT.Infrastructure", "Com.Infrastructure\Com.MSAT.Infrastructure.csproj", "{745F01BD-C838-4EAF-88F5-F2B9737CF29C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.MSAT.Domain", "Com.MSAT.Domain\Com.MSAT.Domain.csproj", "{B5DD69CE-3E81-494D-B2F0-7FF1191CD0CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.MSAT.CliTool", "Com.MSAT.CliTool\Com.MSAT.CliTool.csproj", "{7D6B7B01-2406-4131-AF9B-8273E4490444}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{745F01BD-C838-4EAF-88F5-F2B9737CF29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{745F01BD-C838-4EAF-88F5-F2B9737CF29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{745F01BD-C838-4EAF-88F5-F2B9737CF29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5DD69CE-3E81-494D-B2F0-7FF1191CD0CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5DD69CE-3E81-494D-B2F0-7FF1191CD0CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5DD69CE-3E81-494D-B2F0-7FF1191CD0CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5DD69CE-3E81-494D-B2F0-7FF1191CD0CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D6B7B01-2406-4131-AF9B-8273E4490444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D6B7B01-2406-4131-AF9B-8273E4490444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D6B7B01-2406-4131-AF9B-8273E4490444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D6B7B01-2406-4131-AF9B-8273E4490444}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

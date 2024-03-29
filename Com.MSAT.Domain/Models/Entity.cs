@@ -1,4 +1,4 @@
-﻿namespace Com.MSAT.Infrastructure.Models;
+﻿namespace Com.MSAT.Domain.Models;
 
 public abstract class Entity
 {

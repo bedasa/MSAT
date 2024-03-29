@@ -1,4 +1,4 @@
-﻿using Com.MSAT.Infrastructure.Models;
+﻿using Com.MSAT.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,6 +8,9 @@ public class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> orderConfiguration)
     {
+        var navigation = orderConfiguration.Metadata.FindNavigation(nameof(Order.OrderLines));
+        navigation?.SetPropertyAccessMode(PropertyAccessMode.Field);
+        
         orderConfiguration.ToTable("Orders");
         orderConfiguration.HasKey(p => p.Id);
         orderConfiguration.Property(p => p.Id).UseIdentityColumn().HasColumnName("order_id");
@@ -17,9 +20,6 @@ public class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Order>
         orderConfiguration.Property(p => p.CreatedAt).IsRequired().HasColumnName("created_at");
         orderConfiguration.Property(p => p.UpdatedBy).IsRequired().HasColumnName("updated_by");
         orderConfiguration.Property(p => p.UpdatedAt).IsRequired().HasColumnName("updated_at");
-        orderConfiguration.HasMany(p => p.OrderLines)
-            .WithOne(p => p.ParentOrder)
-            .HasForeignKey(p => p.OrderId)
-            .OnDelete(DeleteBehavior.Cascade);
+        
     }
 }

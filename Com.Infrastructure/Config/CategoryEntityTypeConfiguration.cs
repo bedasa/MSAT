@@ -1,4 +1,4 @@
-﻿using Com.MSAT.Infrastructure.Models;
+﻿using Com.MSAT.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
