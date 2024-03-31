@@ -1,0 +1,9 @@
+{
+	"name": "msat-df",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "83d4c0bf-5a8b-4ab2-804f-929528470cfc",
+		"tenantId": "5f5688d8-46e9-4490-adbb-f644c0a26f76"
+	}
+}

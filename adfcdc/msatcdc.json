@@ -1,0 +1,383 @@
+{
+	"name": "msatcdc",
+	"properties": {
+		"SourceConnectionsInfo": [
+			{
+				"SourceEntities": [
+					{
+						"name": "dbo.Products",
+						"properties": {
+							"schema": [
+								{
+									"name": "product_id",
+									"dataType": "long"
+								},
+								{
+									"name": "product_name",
+									"dataType": "string"
+								},
+								{
+									"name": "category_id",
+									"dataType": "long"
+								},
+								{
+									"name": "price",
+									"dataType": "float"
+								},
+								{
+									"name": "description",
+									"dataType": "string"
+								},
+								{
+									"name": "image_url",
+									"dataType": "string"
+								},
+								{
+									"name": "date_added",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "created_by",
+									"dataType": "string"
+								},
+								{
+									"name": "created_at",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "updated_by",
+									"dataType": "string"
+								},
+								{
+									"name": "updated_at",
+									"dataType": "timestamp"
+								}
+							],
+							"dslConnectorProperties": [
+								{
+									"name": "schemaName",
+									"value": "dbo"
+								},
+								{
+									"name": "tableName",
+									"value": "Products"
+								},
+								{
+									"name": "enableNativeCdc",
+									"value": true
+								},
+								{
+									"name": "netChanges",
+									"value": true
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
+								}
+							]
+						}
+					}
+				],
+				"Connection": {
+					"linkedService": {
+						"referenceName": "msatdb_linked_service",
+						"type": "LinkedServiceReference"
+					},
+					"linkedServiceType": "AzureSqlDatabase",
+					"type": "linkedservicetype",
+					"isInlineDataset": true,
+					"commonDslConnectorProperties": [
+						{
+							"name": "allowSchemaDrift",
+							"value": true
+						},
+						{
+							"name": "inferDriftedColumnTypes",
+							"value": true
+						},
+						{
+							"name": "format",
+							"value": "table"
+						},
+						{
+							"name": "store",
+							"value": "sqlserver"
+						},
+						{
+							"name": "databaseType",
+							"value": "databaseType"
+						},
+						{
+							"name": "database",
+							"value": "database"
+						},
+						{
+							"name": "skipInitialLoad",
+							"value": true
+						}
+					]
+				}
+			}
+		],
+		"TargetConnectionsInfo": [
+			{
+				"TargetEntities": [
+					{
+						"name": "dbo.Products",
+						"properties": {
+							"schema": [
+								{
+									"name": "product_id",
+									"dataType": "integer"
+								},
+								{
+									"name": "product_name",
+									"dataType": "string"
+								},
+								{
+									"name": "category_id",
+									"dataType": "integer"
+								},
+								{
+									"name": "price",
+									"dataType": "decimal(10,2)"
+								},
+								{
+									"name": "description",
+									"dataType": "string"
+								},
+								{
+									"name": "image_url",
+									"dataType": "string"
+								},
+								{
+									"name": "date_added",
+									"dataType": "timestamp"
+								}
+							],
+							"dslConnectorProperties": [
+								{
+									"name": "schemaName",
+									"value": "dbo"
+								},
+								{
+									"name": "tableName",
+									"value": "Products"
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
+								},
+								{
+									"name": "keys",
+									"value": [
+										"product_id",
+										"category_id"
+									]
+								},
+								{
+									"name": "deletable",
+									"value": true
+								},
+								{
+									"name": "updateable",
+									"value": true
+								},
+								{
+									"name": "upsertable",
+									"value": true
+								},
+								{
+									"name": "defaultToUpsert",
+									"value": true
+								}
+							]
+						}
+					}
+				],
+				"Connection": {
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase1",
+						"type": "LinkedServiceReference"
+					},
+					"linkedServiceType": "AzureSqlDatabase",
+					"type": "linkedservicetype",
+					"isInlineDataset": true,
+					"commonDslConnectorProperties": [
+						{
+							"name": "allowSchemaDrift",
+							"value": true
+						},
+						{
+							"name": "inferDriftedColumnTypes",
+							"value": true
+						},
+						{
+							"name": "format",
+							"value": "table"
+						},
+						{
+							"name": "store",
+							"value": "sqlserver"
+						},
+						{
+							"name": "databaseType",
+							"value": "databaseType"
+						},
+						{
+							"name": "database",
+							"value": "database"
+						},
+						{
+							"name": "deletable",
+							"value": false
+						},
+						{
+							"name": "insertable",
+							"value": true
+						},
+						{
+							"name": "updateable",
+							"value": false
+						},
+						{
+							"name": "upsertable",
+							"value": false
+						},
+						{
+							"name": "skipDuplicateMapInputs",
+							"value": true
+						},
+						{
+							"name": "skipDuplicateMapOutputs",
+							"value": true
+						}
+					]
+				},
+				"DataMapperMappings": [
+					{
+						"targetEntityName": "dbo.Products",
+						"sourceEntityName": "dbo.Products",
+						"sourceConnectionReference": {
+							"connectionName": "msatdb_linked_service",
+							"type": "linkedservicetype"
+						},
+						"attributeMappingInfo": {
+							"attributeMappings": [
+								{
+									"name": "category_id",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "category_id",
+										"entity": "dbo.Products",
+										"entityConnectionReference": {
+											"connectionName": "msatdb_linked_service",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "date_added",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "date_added",
+										"entity": "dbo.Products",
+										"entityConnectionReference": {
+											"connectionName": "msatdb_linked_service",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "description",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "description",
+										"entity": "dbo.Products",
+										"entityConnectionReference": {
+											"connectionName": "msatdb_linked_service",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "image_url",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "image_url",
+										"entity": "dbo.Products",
+										"entityConnectionReference": {
+											"connectionName": "msatdb_linked_service",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "price",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "price",
+										"entity": "dbo.Products",
+										"entityConnectionReference": {
+											"connectionName": "msatdb_linked_service",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "product_id",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "product_id",
+										"entity": "dbo.Products",
+										"entityConnectionReference": {
+											"connectionName": "msatdb_linked_service",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "product_name",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "product_name",
+										"entity": "dbo.Products",
+										"entityConnectionReference": {
+											"connectionName": "msatdb_linked_service",
+											"type": "linkedservicetype"
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"Relationships": []
+			}
+		],
+		"Policy": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15
+			},
+			"mode": "Microbatch"
+		},
+		"allowVNetOverride": false,
+		"id": "c7507f7cb8fc49ddb28a3023297124ac"
+	}
+}
